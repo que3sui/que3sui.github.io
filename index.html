@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Yuhan Que — 平庸的思想家 & 有趣的开发者</title>
+    <title>Yuhan Que — 平庸的思想家，有趣的开发者</title>
     <meta
       name="description"
       content="Yuhan Que，中科大在读，AI Agent 方向。想做一个平庸的思想家和有趣的开发者。"
@@ -14,14 +14,22 @@
     />
     <style>
       :root {
-        --bg: #0b0b10;
-        --bg-soft: #12121a;
-        --text: #ececf1;
-        --muted: #8b8b98;
-        --border: rgba(255, 255, 255, 0.08);
-        --accent: #fe2c55;
-        --accent2: #8b7bff;
-        --radius: 14px;
+        --paper: #f7f4ee;
+        --paper-deep: #efebe2;
+        --ink: #1c1b18;
+        --ink-soft: #3c3a35;
+        --muted: #6f6c64;
+        --hairline: rgba(28, 27, 24, 0.14);
+        --vermilion: #bf3a22;
+        --serif:
+          "Georgia", "Songti SC", "Noto Serif SC", "Source Han Serif SC",
+          "SimSun", serif;
+        --sans:
+          -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB",
+          "Microsoft YaHei", "Segoe UI", sans-serif;
+        --mono:
+          "SF Mono", "JetBrains Mono", "Cascadia Code", Consolas, "Courier New",
+          monospace;
       }
 
       * {
@@ -35,284 +43,368 @@
       }
 
       body {
-        background: var(--bg);
-        color: var(--text);
-        font-family:
-          -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB",
-          "Microsoft YaHei", "Segoe UI", Roboto, sans-serif;
-        line-height: 1.7;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: var(--sans);
+        font-size: 16.5px;
+        line-height: 1.9;
         -webkit-font-smoothing: antialiased;
       }
 
-      /* 背景光晕 */
-      body::before {
-        content: "";
-        position: fixed;
-        inset: 0;
-        z-index: -1;
-        background:
-          radial-gradient(
-            600px 400px at 85% -5%,
-            rgba(139, 123, 255, 0.13),
-            transparent 60%
-          ),
-          radial-gradient(
-            500px 350px at 8% 15%,
-            rgba(254, 44, 85, 0.08),
-            transparent 60%
-          );
-        pointer-events: none;
+      ::selection {
+        background: var(--vermilion);
+        color: var(--paper);
       }
 
-      .wrap {
-        max-width: 760px;
+      a:focus-visible {
+        outline: 2px solid var(--vermilion);
+        outline-offset: 3px;
+        border-radius: 2px;
+      }
+
+      .sheet {
+        max-width: 700px;
         margin: 0 auto;
-        padding: 0 24px;
+        padding: 0 26px;
       }
 
-      /* ---------- 顶栏 ---------- */
-      header {
+      /* ---------- 印章 ---------- */
+      .seal {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        writing-mode: vertical-rl;
+        width: 46px;
+        height: 46px;
+        background: var(--vermilion);
+        color: var(--paper);
+        font-family: var(--serif);
+        font-weight: 700;
+        font-size: 16px;
+        letter-spacing: 3px;
+        text-indent: 3px;
+        border-radius: 5px;
+        transform: rotate(-2.5deg);
+        box-shadow: inset 0 0 0 1.5px rgba(247, 244, 238, 0.4);
+        text-decoration: none;
+        transition: transform 0.3s ease;
+      }
+      .seal:hover {
+        transform: rotate(0deg);
+      }
+
+      /* ---------- 页眉 ---------- */
+      .masthead {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 28px 0;
-        font-size: 14px;
+        padding: 30px 0;
       }
-      .logo {
-        font-weight: 700;
+      .wordmark {
+        font-family: var(--mono);
+        font-size: 12px;
+        letter-spacing: 0.28em;
+        color: var(--ink);
+        text-decoration: none;
+      }
+      .masthead nav {
+        display: flex;
+        gap: 22px;
+      }
+      .masthead nav a {
+        font-family: var(--mono);
+        font-size: 12.5px;
         letter-spacing: 0.06em;
-      }
-      .logo em {
-        font-style: normal;
-        background: linear-gradient(120deg, var(--accent), var(--accent2));
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-      }
-      header a {
         color: var(--muted);
         text-decoration: none;
-        transition: color 0.2s;
+        border-bottom: 1px solid transparent;
+        transition:
+          color 0.2s,
+          border-color 0.2s;
       }
-      header a:hover {
-        color: var(--text);
+      .masthead nav a:hover {
+        color: var(--vermilion);
+        border-color: var(--vermilion);
       }
 
-      /* ---------- Hero ---------- */
+      /* ---------- 卷首 ---------- */
       .hero {
-        padding: 64px 0 48px;
+        padding: 58px 0 62px;
       }
-      .hero .kicker {
-        font-size: 13px;
-        letter-spacing: 0.22em;
-        text-transform: uppercase;
+      .kicker {
+        font-family: var(--mono);
+        font-size: 12px;
+        letter-spacing: 0.24em;
         color: var(--muted);
-        margin-bottom: 20px;
-      }
-      .hero .kicker b {
-        color: var(--accent);
-        font-weight: 600;
+        margin-bottom: 26px;
       }
       .hero h1 {
-        font-size: clamp(34px, 8vw, 56px);
-        font-weight: 700;
-        line-height: 1.28;
-        letter-spacing: 0.01em;
-        margin-bottom: 20px;
+        font-family: var(--serif);
+        font-size: clamp(29px, 6.4vw, 46px);
+        font-weight: 600;
+        line-height: 1.5;
+        letter-spacing: 0.02em;
+        margin-bottom: 18px;
       }
-      .hero h1 .grad {
-        background: linear-gradient(
-          120deg,
-          var(--accent) 10%,
-          var(--accent2) 90%
-        );
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
+      .hero h1 em {
+        font-style: normal;
+        color: var(--vermilion);
+      }
+      .hero h1 sup {
+        font-family: var(--mono);
+        font-size: 0.38em;
+        color: var(--vermilion);
+        margin-left: 2px;
+        text-decoration: none;
       }
       .hero .sub {
+        font-family: var(--mono);
+        font-size: 13.5px;
         color: var(--muted);
-        font-size: 16px;
-        margin-bottom: 36px;
+        margin-bottom: 42px;
       }
-      .hero .id {
+      .byline {
         display: flex;
         align-items: center;
         gap: 14px;
       }
-      .hero .id img {
-        width: 52px;
-        height: 52px;
+      .byline img {
+        width: 42px;
+        height: 42px;
         border-radius: 50%;
-        border: 1px solid var(--border);
+        border: 1px solid var(--hairline);
       }
-      .hero .id .who {
+      .byline .name {
+        font-family: var(--serif);
         font-weight: 600;
         font-size: 16px;
+        line-height: 1.4;
       }
-      .hero .id .where {
-        color: var(--muted);
-        font-size: 13px;
-      }
-
-      /* ---------- 通用小节 ---------- */
-      section {
-        padding: 44px 0;
-        border-top: 1px solid var(--border);
-      }
-      .sec-title {
-        font-size: 13px;
-        letter-spacing: 0.22em;
-        text-transform: uppercase;
-        color: var(--muted);
-        margin-bottom: 24px;
-      }
-      .sec-title::before {
-        content: "// ";
-        color: var(--accent);
-      }
-
-      .about p {
-        color: #c9c9d4;
-        font-size: 16px;
-        margin-bottom: 12px;
-      }
-
-      /* ---------- 技能 ---------- */
-      .skill-group {
-        margin-bottom: 20px;
-      }
-      .skill-group:last-child {
-        margin-bottom: 0;
-      }
-      .skill-group h3 {
-        font-size: 14px;
-        font-weight: 600;
-        color: var(--muted);
-        margin-bottom: 10px;
-        letter-spacing: 0.05em;
-      }
-      .chips {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-      }
-      .chip {
-        font-size: 13px;
-        padding: 5px 14px;
-        border-radius: 999px;
-        border: 1px solid var(--border);
-        background: var(--bg-soft);
-        color: #d5d5e0;
-      }
-
-      /* ---------- 项目 ---------- */
-      .grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 16px;
-      }
-      @media (max-width: 620px) {
-        .grid {
-          grid-template-columns: 1fr;
-        }
-      }
-
-      .card {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        padding: 22px;
-        border-radius: var(--radius);
-        border: 1px solid var(--border);
-        background: var(--bg-soft);
-        text-decoration: none;
-        color: inherit;
-        transition:
-          transform 0.25s ease,
-          border-color 0.25s ease,
-          box-shadow 0.25s ease;
-      }
-      .card:hover {
-        transform: translateY(-4px);
-        border-color: rgba(139, 123, 255, 0.45);
-        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
-      }
-      .card .top {
-        display: flex;
-        justify-content: space-between;
-        align-items: baseline;
-        gap: 8px;
-      }
-      .card h3 {
-        font-size: 17px;
-        font-weight: 650;
-      }
-      .card .meta {
+      .byline .handle {
+        font-family: var(--mono);
         font-size: 12px;
         color: var(--muted);
-        white-space: nowrap;
       }
-      .card p {
-        font-size: 13.5px;
-        color: #b9b9c6;
-        flex: 1;
+
+      /* ---------- 小节 ---------- */
+      section.block {
+        border-top: 1px solid var(--hairline);
+        padding: 40px 0 46px;
       }
-      .card .tags {
+      .sec-head {
         display: flex;
-        flex-wrap: wrap;
-        gap: 6px;
+        align-items: baseline;
+        gap: 14px;
+        margin-bottom: 24px;
       }
-      .card .tag {
-        font-size: 11.5px;
-        color: var(--accent2);
-        background: rgba(139, 123, 255, 0.1);
-        border-radius: 6px;
-        padding: 2px 8px;
-      }
-      .card .arrow {
-        color: var(--muted);
+      .sec-head .no {
+        font-family: var(--mono);
         font-size: 13px;
+        color: var(--vermilion);
+      }
+      .sec-head h2 {
+        font-family: var(--serif);
+        font-size: 25px;
+        font-weight: 600;
+        letter-spacing: 0.06em;
+      }
+      .sec-head .en {
+        font-family: var(--mono);
+        font-size: 10.5px;
+        letter-spacing: 0.3em;
+        color: var(--muted);
+        margin-left: auto;
+      }
+
+      /* ---------- 自述 ---------- */
+      .about p {
+        color: var(--ink-soft);
+        margin-bottom: 14px;
+      }
+      .about p:last-child {
+        margin-bottom: 0;
+      }
+
+      /* ---------- 装备 ---------- */
+      .tools {
+        display: grid;
+        grid-template-columns: 96px 1fr;
+      }
+      .tool-row {
+        display: contents;
+      }
+      .tool-row dt {
+        font-family: var(--serif);
+        font-weight: 600;
+        font-size: 15px;
+        padding: 12px 0;
+        border-bottom: 1px solid var(--hairline);
+      }
+      .tool-row dd {
+        font-size: 15px;
+        color: var(--ink-soft);
+        padding: 12px 0;
+        border-bottom: 1px solid var(--hairline);
+      }
+      .tool-row:nth-last-of-type(-n + 1) dt,
+      .tool-row:nth-last-of-type(-n + 1) dd {
+        border-bottom: none;
+      }
+
+      /* ---------- 作品 ---------- */
+      .works {
+        list-style: none;
+      }
+      .work a {
+        display: grid;
+        grid-template-columns: 2.6rem 1fr 5.2rem 1.4rem;
+        gap: 0 14px;
+        align-items: start;
+        padding: 24px 6px;
+        border-bottom: 1px solid var(--hairline);
+        text-decoration: none;
+        color: inherit;
+        transition: background 0.25s ease;
+      }
+      .work a:hover {
+        background: rgba(191, 58, 34, 0.045);
+      }
+      .work .no {
+        font-family: var(--mono);
+        font-size: 13px;
+        color: var(--muted);
+        padding-top: 5px;
+      }
+      .work h3 {
+        font-family: var(--serif);
+        font-size: 19px;
+        font-weight: 600;
+        line-height: 1.5;
+        transition: color 0.2s;
+      }
+      .work a:hover h3 {
+        color: var(--vermilion);
+      }
+      .work h3 .latin {
+        font-family: var(--mono);
+        font-size: 12.5px;
+        font-weight: 400;
+        color: var(--muted);
+        margin-left: 8px;
+        letter-spacing: 0.02em;
+      }
+      .work .desc {
+        font-size: 14.5px;
+        color: var(--ink-soft);
+        line-height: 1.85;
+        margin: 6px 0 10px;
+      }
+      .work .tags {
+        font-family: var(--mono);
+        font-size: 11.5px;
+        letter-spacing: 0.04em;
+        color: var(--muted);
+      }
+      .work .meta {
+        font-family: var(--mono);
+        font-size: 11px;
+        line-height: 1.8;
+        color: var(--muted);
+        text-align: right;
+        padding-top: 5px;
+      }
+      .work .go {
+        font-family: var(--mono);
+        font-size: 14px;
+        color: var(--muted);
+        padding-top: 5px;
         transition:
           color 0.2s,
           transform 0.2s;
       }
-      .card:hover .arrow {
-        color: var(--text);
+      .work a:hover .go {
+        color: var(--vermilion);
         transform: translateX(3px);
       }
+      @media (max-width: 560px) {
+        .work a {
+          grid-template-columns: 2.2rem 1fr;
+        }
+        .work .meta,
+        .work .go {
+          display: none;
+        }
+      }
 
-      /* ---------- 页脚 ---------- */
-      footer {
-        border-top: 1px solid var(--border);
-        padding: 36px 0 56px;
+      /* ---------- 脚注 ---------- */
+      .footnotes {
+        border-top: 1px solid var(--hairline);
+        padding: 26px 0 10px;
+      }
+      .footnotes .fn-title {
+        font-family: var(--mono);
+        font-size: 10.5px;
+        letter-spacing: 0.3em;
+        color: var(--muted);
+        margin-bottom: 10px;
+      }
+      .footnotes p {
+        font-size: 13.5px;
+        color: var(--muted);
+        line-height: 1.9;
+        margin-bottom: 4px;
+      }
+      .footnotes .mark {
+        font-family: var(--mono);
+        color: var(--vermilion);
+        margin-right: 6px;
+      }
+
+      /* ---------- 版权页 ---------- */
+      .colophon {
+        border-top: 1px solid var(--hairline);
+        padding: 52px 0 64px;
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 14px;
+        gap: 18px;
+        text-align: center;
       }
-      .links {
-        display: flex;
-        gap: 28px;
-        font-size: 15px;
+      .colophon .seal {
+        width: 54px;
+        height: 54px;
+        font-size: 18px;
+        transform: rotate(2.5deg);
       }
-      .links a {
-        color: #d5d5e0;
-        text-decoration: none;
-        transition: color 0.2s;
-      }
-      .links a:hover {
-        color: var(--accent);
-      }
-      footer .fine {
+      .colophon .lines {
+        font-family: var(--mono);
+        font-size: 11.5px;
+        letter-spacing: 0.14em;
         color: var(--muted);
-        font-size: 12.5px;
+        line-height: 2.1;
+      }
+      .colophon .links {
+        display: flex;
+        gap: 26px;
+      }
+      .colophon .links a {
+        font-size: 14px;
+        color: var(--ink);
+        text-decoration: none;
+        border-bottom: 1px solid var(--hairline);
+        transition:
+          color 0.2s,
+          border-color 0.2s;
+      }
+      .colophon .links a:hover {
+        color: var(--vermilion);
+        border-color: var(--vermilion);
       }
 
-      /* ---------- 入场动画 ---------- */
+      /* ---------- 入场 ---------- */
       .reveal {
         opacity: 0;
-        transform: translateY(22px);
+        transform: translateY(18px);
         transition:
           opacity 0.7s ease,
           transform 0.7s ease;
@@ -327,229 +419,252 @@
           transform: none;
           transition: none;
         }
+        html {
+          scroll-behavior: auto;
+        }
       }
     </style>
   </head>
   <body>
-    <header class="wrap">
-      <div class="logo">Yuhan<em>Que</em></div>
-      <a href="https://github.com/que3sui" target="_blank" rel="noopener"
-        >GitHub ↗</a
-      >
-    </header>
+    <div class="sheet">
+      <header class="masthead">
+        <a class="wordmark" href="#top">YUHAN QUE</a>
+        <nav>
+          <a href="https://github.com/que3sui" target="_blank" rel="noopener"
+            >GitHub</a
+          >
+          <a href="mailto:que@mail.ustc.edu.cn">Email</a>
+        </nav>
+      </header>
 
-    <main class="wrap">
-      <div class="hero">
-        <div class="kicker"><b>USTC</b> · AI Agent 方向</div>
-        <h1>
-          想做一个<span class="grad">平庸的思想家</span
-          >，<br />和一个有趣的开发者。
-        </h1>
-        <p class="sub">A mediocre thinker, an interesting developer.</p>
-        <div class="id">
-          <img
-            src="https://avatars.githubusercontent.com/u/204201112?v=4"
-            alt="avatar"
-          />
-          <div>
-            <div class="who">Yuhan Que</div>
-            <div class="where">中国科学技术大学 · 在读</div>
+      <main id="top">
+        <div class="hero">
+          <p class="kicker">中国科学技术大学 · AI AGENT 方向</p>
+          <h1>
+            想做一个<em>平庸</em
+            ><sup><a href="#fn1" style="color: inherit">*</a></sup
+            >的思想家，<br />
+            和一个<em>有趣</em
+            ><sup><a href="#fn2" style="color: inherit">†</a></sup
+            >的开发者。
+          </h1>
+          <p class="sub">A mediocre thinker, an interesting developer.</p>
+          <div class="byline">
+            <img
+              src="https://avatars.githubusercontent.com/u/204201112?v=4"
+              alt="Yuhan Que 的头像"
+            />
+            <div>
+              <div class="name">Yuhan Que</div>
+              <div class="handle">que3sui · 单文件手作主页</div>
+            </div>
           </div>
         </div>
-      </div>
 
-      <section id="about" class="reveal">
-        <h2 class="sec-title">关于我</h2>
-        <div class="about">
-          <p>
-            中科大在读，AI Agent 方向。关注 LLM 应用、AI Coding Agent
-            与个性化推荐系统。
+        <section id="about" class="block reveal">
+          <div class="sec-head">
+            <span class="no">01</span>
+            <h2>自述</h2>
+            <span class="en">ABOUT</span>
+          </div>
+          <div class="about">
+            <p>
+              中科大在读，AI Agent 方向。关注 LLM 应用、Coding Agent
+              与推荐系统——教机器做事，顺便观察它们怎么学。
+            </p>
+            <p>
+              喜欢把想法做成能跑的小东西：黑客松 48 小时搭出的「找搭子」、预测 A
+              股趋势的 Transformer、挂在 npm 上量化 Coding Agent
+              效率的小工具。有的已经跑通，有的还在跑。
+            </p>
+            <p>
+              平时上课做研究，周末折腾一个叫「蜗壳进阶联盟」的学生组织——让喜欢折腾的人凑在一起折腾。
+            </p>
+          </div>
+        </section>
+
+        <section id="toolkit" class="block reveal">
+          <div class="sec-head">
+            <span class="no">02</span>
+            <h2>装备</h2>
+            <span class="en">TOOLKIT</span>
+          </div>
+          <dl class="tools">
+            <div class="tool-row">
+              <dt>前端</dt>
+              <dd>Vue 3 · TypeScript · Vite · Vant · Pinia · GitHub Pages</dd>
+            </div>
+            <div class="tool-row">
+              <dt>深度学习</dt>
+              <dd>PyTorch · Transformer · 时序建模 · 推荐系统</dd>
+            </div>
+            <div class="tool-row">
+              <dt>Agent 与 LLM</dt>
+              <dd>
+                Claude Code · Agent 评测 · Prompt Engineering · Node.js CLI
+              </dd>
+            </div>
+          </dl>
+        </section>
+
+        <section id="works" class="block reveal">
+          <div class="sec-head">
+            <span class="no">03</span>
+            <h2>作品</h2>
+            <span class="en">WORKS</span>
+          </div>
+          <ol class="works">
+            <li class="work">
+              <a
+                href="https://github.com/que3sui/zhaodazi"
+                target="_blank"
+                rel="noopener"
+              >
+                <span class="no">01</span>
+                <div>
+                  <h3>找搭子<span class="latin">zhaodazi</span></h3>
+                  <p class="desc">
+                    TikTok 风格的移动端「找搭子」App：LLM-as-Ranker
+                    个性化推荐、行为画像分析、完整组局与应约流程。48
+                    小时，从一句「要不要做个 App」到能跑。
+                  </p>
+                  <span class="tags">Vue 3 · TypeScript · LLM · 推荐系统</span>
+                </div>
+                <span class="meta">2026<br />黑客松</span>
+                <span class="go">→</span>
+              </a>
+            </li>
+            <li class="work">
+              <a
+                href="https://github.com/que3sui/quality_eval"
+                target="_blank"
+                rel="noopener"
+              >
+                <span class="no">02</span>
+                <div>
+                  <h3>Agent-Eff<span class="latin">quality_eval</span></h3>
+                  <p class="desc">
+                    量化 AI Coding Agent
+                    在多轮迭代中的效率衰减：一个百分比综合评分，和每个会话的效率曲线。<code
+                      >npm install -g agent-eff</code
+                    >
+                    即用。
+                  </p>
+                  <span class="tags">TypeScript · CLI · Agent 评测</span>
+                </div>
+                <span class="meta">2026<br />npm CLI</span>
+                <span class="go">→</span>
+              </a>
+            </li>
+            <li class="work">
+              <a
+                href="https://github.com/que3sui/A_stock"
+                target="_blank"
+                rel="noopener"
+              >
+                <span class="no">03</span>
+                <div>
+                  <h3>A_stock</h3>
+                  <p class="desc">
+                    基于 MASTER（AAAI 2024）的 A 股短期趋势预测与模拟交易：时序
+                    + 横截面双轴注意力，预测未来五日横截面分位。
+                  </p>
+                  <span class="tags">PyTorch · Transformer · 量化</span>
+                </div>
+                <span class="meta">2026<br />课程作业</span>
+                <span class="go">→</span>
+              </a>
+            </li>
+            <li class="work">
+              <a
+                href="https://github.com/que3sui/Prompt_techniques"
+                target="_blank"
+                rel="noopener"
+              >
+                <span class="no">04</span>
+                <div>
+                  <h3>Prompt_techniques</h3>
+                  <p class="desc">
+                    场景驱动的 Prompt
+                    实战手册：每个技巧写清何时用、说什么、为何有效、何时失效。
+                  </p>
+                  <span class="tags">Prompt Engineering · LLM</span>
+                </div>
+                <span class="meta">2026<br />手册</span>
+                <span class="go">→</span>
+              </a>
+            </li>
+            <li class="work">
+              <a
+                href="https://que3sui.github.io/Snail-Advanced-Alliance/"
+                target="_blank"
+                rel="noopener"
+              >
+                <span class="no">05</span>
+                <div>
+                  <h3>
+                    蜗壳进阶联盟<span class="latin"
+                      >Snail-Advanced-Alliance</span
+                    >
+                  </h3>
+                  <p class="desc">
+                    让喜欢折腾的人凑在一起折腾：USTC 学生联盟的官网与活动页。
+                  </p>
+                  <span class="tags">GitHub Pages · 前端</span>
+                </div>
+                <span class="meta">USTC<br />社团</span>
+                <span class="go">→</span>
+              </a>
+            </li>
+            <li class="work">
+              <a
+                href="https://github.com/que3sui/Game003"
+                target="_blank"
+                rel="noopener"
+              >
+                <span class="no">06</span>
+                <div>
+                  <h3>Game003</h3>
+                  <p class="desc">
+                    「享受人生这场游戏」——即兴小项目合集，一个平庸者的宣言，长期招募合作者。
+                  </p>
+                  <span class="tags">Playground · 开放合作</span>
+                </div>
+                <span class="meta">玩票<br />仓库</span>
+                <span class="go">→</span>
+              </a>
+            </li>
+          </ol>
+        </section>
+
+        <div class="footnotes reveal">
+          <p class="fn-title">FOOTNOTES</p>
+          <p id="fn1">
+            <span class="mark">*</span
+            >平庸，指不追逐惊天动地，而非不认真做事——认真是底线，只是不声张。
           </p>
-          <p>
-            喜欢把想法做成能跑的小东西——从黑客松 48 小时搭出的移动端 App，到量化
-            A 股趋势的深度学习模型，再到挂在 npm 上评测 Coding Agent
-            效率的小工具。
-          </p>
-          <p>
-            相信「平庸」是一种诚实的姿态：承认局限，保持好奇，把每件小事做到有趣。
+          <p id="fn2">
+            <span class="mark">†</span>有趣，是一种可以练习的能力。
           </p>
         </div>
-      </section>
 
-      <section id="skills" class="reveal">
-        <h2 class="sec-title">技能</h2>
-        <div class="skill-group">
-          <h3>前端开发</h3>
-          <div class="chips">
-            <span class="chip">Vue 3</span><span class="chip">TypeScript</span>
-            <span class="chip">Vite</span><span class="chip">Vant</span>
-            <span class="chip">Pinia</span
-            ><span class="chip">GitHub Pages</span>
+        <footer class="colophon">
+          <div class="seal">平庸</div>
+          <div class="lines">
+            © <span id="year">2026</span> YUHAN QUE<br />
+            单文件 · 无框架 · 无构建 · 无追踪
           </div>
-        </div>
-        <div class="skill-group">
-          <h3>AI / 深度学习</h3>
-          <div class="chips">
-            <span class="chip">PyTorch</span
-            ><span class="chip">Transformer</span>
-            <span class="chip">时序建模</span><span class="chip">LLM 应用</span>
-            <span class="chip">推荐系统</span>
+          <div class="links">
+            <a href="https://github.com/que3sui" target="_blank" rel="noopener"
+              >GitHub</a
+            >
+            <a href="mailto:que@mail.ustc.edu.cn">Email</a>
           </div>
-        </div>
-        <div class="skill-group">
-          <h3>Agent / 工具链</h3>
-          <div class="chips">
-            <span class="chip">Claude Code</span
-            ><span class="chip">Agent 评测</span>
-            <span class="chip">Prompt Engineering</span
-            ><span class="chip">Node.js CLI</span>
-            <span class="chip">Git</span>
-          </div>
-        </div>
-      </section>
-
-      <section id="projects" class="reveal">
-        <h2 class="sec-title">项目</h2>
-        <div class="grid">
-          <a
-            class="card"
-            href="https://github.com/que3sui/zhaodazi"
-            target="_blank"
-            rel="noopener"
-          >
-            <div class="top">
-              <h3>找搭子 · zhaodazi</h3>
-              <span class="meta">黑客松 · 2026.05</span>
-            </div>
-            <p>
-              TikTok 风格移动端「找搭子」App：LLM-as-Ranker 个性化推荐 +
-              用户行为画像分析 + 完整组局/应约流程。
-            </p>
-            <div class="tags">
-              <span class="tag">Vue 3</span><span class="tag">TypeScript</span>
-              <span class="tag">LLM</span><span class="tag">推荐系统</span>
-            </div>
-            <span class="arrow">→</span>
-          </a>
-
-          <a
-            class="card"
-            href="https://github.com/que3sui/quality_eval"
-            target="_blank"
-            rel="noopener"
-          >
-            <div class="top">
-              <h3>Agent-Eff</h3>
-              <span class="meta">npm CLI</span>
-            </div>
-            <p>
-              量化 AI Coding Agent
-              在多轮迭代中的效率衰减，输出百分比综合评分，追踪每个会话的效率曲线。
-            </p>
-            <div class="tags">
-              <span class="tag">TypeScript</span><span class="tag">CLI</span>
-              <span class="tag">Agent 评测</span>
-            </div>
-            <span class="arrow">→</span>
-          </a>
-
-          <a
-            class="card"
-            href="https://github.com/que3sui/A_stock"
-            target="_blank"
-            rel="noopener"
-          >
-            <div class="top">
-              <h3>A_stock</h3>
-              <span class="meta">深度学习大作业 · 2026</span>
-            </div>
-            <p>
-              基于 MASTER (AAAI 2024) 的 A 股短期趋势预测与模拟交易系统：时序 +
-              横截面双轴注意力。
-            </p>
-            <div class="tags">
-              <span class="tag">PyTorch</span
-              ><span class="tag">Transformer</span>
-              <span class="tag">量化交易</span>
-            </div>
-            <span class="arrow">→</span>
-          </a>
-
-          <a
-            class="card"
-            href="https://github.com/que3sui/Prompt_techniques"
-            target="_blank"
-            rel="noopener"
-          >
-            <div class="top">
-              <h3>Prompt_techniques</h3>
-              <span class="meta">手册</span>
-            </div>
-            <p>
-              场景驱动的实战 Prompt
-              技巧手册：每个技巧含适用场景、即用模板、底层原理与失效边界。
-            </p>
-            <div class="tags">
-              <span class="tag">Prompt Engineering</span>
-              <span class="tag">LLM</span>
-            </div>
-            <span class="arrow">→</span>
-          </a>
-
-          <a
-            class="card"
-            href="https://que3sui.github.io/Snail-Advanced-Alliance/"
-            target="_blank"
-            rel="noopener"
-          >
-            <div class="top">
-              <h3>蜗壳进阶联盟</h3>
-              <span class="meta">学生社团</span>
-            </div>
-            <p>USTC 学生联盟的官网与活动页，社团信息与内容的线上入口。</p>
-            <div class="tags">
-              <span class="tag">GitHub Pages</span><span class="tag">前端</span>
-            </div>
-            <span class="arrow">→</span>
-          </a>
-
-          <a
-            class="card"
-            href="https://github.com/que3sui/Game003"
-            target="_blank"
-            rel="noopener"
-          >
-            <div class="top">
-              <h3>Game003</h3>
-              <span class="meta">玩票仓库</span>
-            </div>
-            <p>
-              「享受人生这场游戏」：即兴小项目合集，一个平庸者的宣言，欢迎合作者。
-            </p>
-            <div class="tags">
-              <span class="tag">Playground</span
-              ><span class="tag">开放合作</span>
-            </div>
-            <span class="arrow">→</span>
-          </a>
-        </div>
-      </section>
-    </main>
-
-    <footer class="wrap">
-      <div class="links">
-        <a href="https://github.com/que3sui" target="_blank" rel="noopener"
-          >GitHub</a
-        >
-        <a href="mailto:que@mail.ustc.edu.cn">Email</a>
-      </div>
-      <div class="fine">
-        © <span id="year">2026</span> Yuhan Que · 平庸而不无聊
-      </div>
-    </footer>
+        </footer>
+      </main>
+    </div>
 
     <script>
-      // 入场动画
       const io = new IntersectionObserver(
         (entries) => {
           for (const e of entries) {
@@ -559,11 +674,9 @@
             }
           }
         },
-        { threshold: 0.12 },
+        { threshold: 0.1 },
       );
       document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
-
-      // 年份
       document.getElementById("year").textContent = new Date().getFullYear();
     </script>
   </body>
